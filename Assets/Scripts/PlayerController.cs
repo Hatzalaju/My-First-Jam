@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
     private int life = 3;
     public Image[] hearts;
     private int currentHearts;
+
+    public TMP_Text playerPoints;
+    private int sumPoints = 0;
 
     private void Awake()
     {
@@ -59,6 +63,27 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             LoseHeart();
+        }
+
+        if (collision.gameObject.CompareTag("ObjectPoint"))
+                       
+        {
+            int[] possiblePoints = { 50, 100 };
+
+            
+            int randomPoints = possiblePoints[Random.Range(0, possiblePoints.Length)];
+                        
+
+            Destroy(collision.gameObject);
+
+            if (sumPoints >= 0)
+            {
+                sumPoints += randomPoints;
+            }
+
+            playerPoints.text = sumPoints.ToString();
+
+            Debug.Log(randomPoints);
         }
     }
 
