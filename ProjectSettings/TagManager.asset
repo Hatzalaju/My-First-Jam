@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Misil
   - ObjectPoint
+  - Butterfly
   layers:
   - Default
   - TransparentFX

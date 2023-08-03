@@ -17,7 +17,9 @@ public class PlayerController : MonoBehaviour
     private int currentHearts;
 
     public TMP_Text playerPoints;
+    public TMP_Text textButterflyPoints;
     private int sumPoints = 0;
+    private int butterflyPoint = 0;
 
     private void Awake()
     {
@@ -84,6 +86,16 @@ public class PlayerController : MonoBehaviour
             playerPoints.text = sumPoints.ToString();
 
             Debug.Log(randomPoints);
+        }
+
+        if (collision.gameObject.CompareTag("Butterfly"))
+        {
+            Destroy(collision.gameObject);
+            butterflyPoint = butterflyPoint + 1;
+            sumPoints += 100;
+
+            textButterflyPoints.text = butterflyPoint.ToString();
+            playerPoints.text = sumPoints.ToString();
         }
     }
 
