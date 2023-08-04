@@ -11,6 +11,7 @@ TagManager:
   - FallWall
   - WinterWall
   - SpringWall
+  - Heart
   layers:
   - Default
   - TransparentFX

@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MenuLvlManager : MonoBehaviour
 {
-    public GameObject menuPanel; 
+    public GameObject menuPanel;
+    public GameObject menuGameOver;
+    public GameObject menuWin;
     private bool isMenuOpen = false;
 
     private void Start()
@@ -45,6 +47,23 @@ public class MenuLvlManager : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
-        Debug.Log("Exit");
+        
     }
+
+    public void GameOver()
+    {
+        menuGameOver.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Winner()
+    {
+        menuWin.SetActive(true);
+    }
+
+
 }

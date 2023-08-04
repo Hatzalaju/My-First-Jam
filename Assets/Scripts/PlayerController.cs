@@ -7,11 +7,10 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
+    public MenuLvlManager menuManager;
 
     public float playerSpeed = 5f;
     
-    //Variables Vida
-    private int maxlife = 3;
     private int life = 3;
     public Image[] hearts;
     private int currentHearts;
@@ -37,7 +36,6 @@ public class PlayerController : MonoBehaviour
         float movementHorizontal = Input.GetAxisRaw("Horizontal");
         float movementVertical = Input.GetAxisRaw("Vertical");
 
-        // Solo permitimos el movimiento en una dirección a la vez
         if (movementHorizontal != 0 && movementVertical != 0)
         {
             if (Mathf.Abs(movementHorizontal) > Mathf.Abs(movementVertical))
@@ -85,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
             playerPoints.text = sumPoints.ToString();
 
-            Debug.Log(randomPoints);
+            
         }
 
         if (collision.gameObject.CompareTag("Butterfly"))
@@ -96,6 +94,22 @@ public class PlayerController : MonoBehaviour
 
             textButterflyPoints.text = butterflyPoint.ToString();
             playerPoints.text = sumPoints.ToString();
+        }
+
+        if (collision.gameObject.CompareTag("Heart"))
+        {
+            if (life == 3)
+            {
+                sumPoints += 500;
+                playerPoints.text = sumPoints.ToString();
+                Destroy(collision.gameObject);
+
+            }
+            else if(life < 3)
+            {
+                WinHeart();
+                Destroy(collision.gameObject);
+            }
         }
 
     }
@@ -117,15 +131,17 @@ public class PlayerController : MonoBehaviour
         if (butterflyPoint == 20 && collision.gameObject.CompareTag("SpringWall"))
         {
             Destroy(collision.gameObject);
+            PlayerWin();
         }
     }
 
-
+    
     private void SystemPlayerLife()
     {
-        if (life <= 0)
+        if (life < 1)
         {
-            Debug.Log("Murio");
+            menuManager.GameOver();
+            Destroy(gameObject);
         }
     }
 
@@ -133,10 +149,28 @@ public class PlayerController : MonoBehaviour
     {
         if (currentHearts > 0)
         {
-            // Desactivamos la imagen del corazón actual.
+            
             hearts[currentHearts - 1].gameObject.SetActive(false);
             currentHearts--;
             life--;
         }
     }
+    public void WinHeart()
+    {
+        if (currentHearts > 0)
+        {
+            
+            hearts[currentHearts].gameObject.SetActive(true);
+            currentHearts++;
+            life++;
+        }
+    }
+
+    private void PlayerWin()
+    {
+            menuManager.Winner();
+
+    }
+
+
 }

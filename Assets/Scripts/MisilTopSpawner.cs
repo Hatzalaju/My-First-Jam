@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MisilSpawner : MonoBehaviour
+public class MisilTopSpawner : MonoBehaviour
 {
-    public GameObject objectToSpawn; 
-    public float spawnTimeInterval = 4.5f; 
+    public GameObject objectToSpawn;
+    public float spawnTimeInterval = 4.5f;
     public float Speed = 5.0f;
-
-    private void Awake()
-    {
-        
-    }
 
     void Start()
     {
@@ -21,6 +16,6 @@ public class MisilSpawner : MonoBehaviour
     void SpawnObject()
     {
         GameObject objectPrefab = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
-        objectPrefab.GetComponent<Rigidbody2D>().velocity = Vector2.left * Speed;
+        objectPrefab.GetComponent<Rigidbody2D>().velocity = Vector2.up * Speed;
     }
 }
