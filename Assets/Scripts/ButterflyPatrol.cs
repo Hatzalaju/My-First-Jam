@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ButterflyPatrol : MonoBehaviour
 {
-    public float speed;
+    private float speed = 5f;
     private float waitTime;
-    public float startWaitTime;
+    private float startWaitTime = 0.1f;
 
     public Transform moveSpot;
     public float minX;
