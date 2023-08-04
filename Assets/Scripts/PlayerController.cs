@@ -97,6 +97,27 @@ public class PlayerController : MonoBehaviour
             textButterflyPoints.text = butterflyPoint.ToString();
             playerPoints.text = sumPoints.ToString();
         }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (butterflyPoint == 5 && collision.gameObject.CompareTag("SummerWall") )
+        {
+            Destroy(collision.gameObject);
+        }
+        if (butterflyPoint == 10 && collision.gameObject.CompareTag("FallWall"))
+        {
+            Destroy(collision.gameObject);
+        }
+        if (butterflyPoint == 15 && collision.gameObject.CompareTag("WinterWall"))
+        {
+            Destroy(collision.gameObject);
+        }
+        if (butterflyPoint == 20 && collision.gameObject.CompareTag("SpringWall"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
 

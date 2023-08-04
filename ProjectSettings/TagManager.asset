@@ -7,6 +7,10 @@ TagManager:
   - Misil
   - ObjectPoint
   - Butterfly
+  - SummerWall
+  - FallWall
+  - WinterFall
+  - SpringWall
   layers:
   - Default
   - TransparentFX
